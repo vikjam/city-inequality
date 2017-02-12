@@ -19,15 +19,16 @@ city.inequality.long$value <- as.numeric(city.inequality.long$value)
 p <- ggplot(city.inequality.long, aes(x = variable, y = value, group = City, colour = City))
 p + geom_line()
 
-city.inequality.long            %>%
-    ggvis(~variable, ~value)    %>%
-    group_by(City)              %>%
-    layer_paths(stroke = ~City) %>%
-    layer_points(fill = ~City)  %>%
-    hide_legend("stroke")       %>%
-    hide_legend("fill")         %>%
-    add_axis("x", title = "")   %>%
-    add_axis("y", title = "")   %>%
+city.inequality.long                       %>%
+    ggvis(~variable, ~value)               %>%
+    group_by(City)                         %>%
+    layer_paths(stroke = ~City)            %>%
+    layer_points(fill = ~City)             %>%
+    hide_legend("stroke")                  %>%
+    hide_legend("fill")                    %>%
+    add_axis("x", title = "")              %>%
+    add_axis("y", title = "")              %>%
+    set_options(height = 800, width = 480) %>%
     add_tooltip(function(df) {paste0(df$City, ": $", df$value)})
 
 # End of script
